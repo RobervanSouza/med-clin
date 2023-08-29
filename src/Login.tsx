@@ -4,30 +4,20 @@ import {
   Text,
   Box,
   FormControl,
-  Input,
-  Button,
+
   Link,
 } from "native-base";
-import Logo from "./assets/Logo.png";
 import { STYLES } from "./styles/styles";
 import { TouchableOpacity } from "react-native";
 import { Titulo } from "./components/Titulo";
-import { Form } from "./components/form";
+import { Form } from "./components/Form";
 import { Botao } from "./components/Button";
+import { LogoMedClin } from "./components/Logo";
 
 export default function Login() {
   return (
     <VStack flex={1} alignItems="center" p={5} justifyContent="center">
-      <Image
-        width={73}
-        height={84}
-        source={Logo}
-        alt="logoMedClin"
-        fontSize="2xl"
-      />
-      <Text color={STYLES.colors.blue3[500]} fontWeight="bold">
-        Med-Clin
-      </Text>
+      <LogoMedClin/>
       <Titulo>Faça login em sua conta</Titulo>
       <Box>
         <FormControl mt={3}>
