@@ -7,10 +7,15 @@ interface TituloProps extends ITagProps {
   children?: ReactNode;
   label: string;
   placeholder: string;
-  
+  secureTextEntry?: boolean;
 }
 
-export function Form({ children, label, placeholder}: TituloProps) {
+export function Form({
+  children,
+  label,
+  placeholder,
+  secureTextEntry = false,
+}: TituloProps) {
   return (
     <Box>
       <FormControl.Label>
@@ -27,6 +32,7 @@ export function Form({ children, label, placeholder}: TituloProps) {
         borderRadius="lg"
         backgroundColor="gray.200"
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
         shadow={3}></Input>
       {children}
     </Box>

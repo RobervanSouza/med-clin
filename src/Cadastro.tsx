@@ -4,8 +4,8 @@ import {
   Text,
   Box,
   FormControl,
-
   Link,
+  Checkbox,
 } from "native-base";
 import { STYLES } from "./styles/styles";
 import { TouchableOpacity } from "react-native";
@@ -16,7 +16,7 @@ import { LogoMedClin } from "./components/Logo";
 import { useState } from "react";
 
 export default function Cadastro() {
-  const [secao, setSecao] = useState(0)
+  const [secao, setSecao] = useState(0);
 
   const formulario = [
     {
@@ -44,6 +44,7 @@ export default function Cadastro() {
           placeholder: "Digite sua senha",
         },
       ],
+      checkbox: [],
     },
     {
       id: 2,
@@ -75,29 +76,71 @@ export default function Cadastro() {
           placeholder: "(00) 00000-0000",
         },
       ],
+      checkbox: [],
+    },
+    {
+      id: 3,
+      titulo: "Para finalizar, qual seu plano de saúde?",
+      descrição: "Selecione os planos:",
+      textoFormulario: [],
+      checkbox: [
+        {
+          id: 1,
+          valeu: "Porto Seguro",
+        },
+        {
+          id: 2,
+          valeu: "Bradesco",
+        },
+        {
+          id: 3,
+          valeu: "Amil",
+        },
+        {
+          id: 4,
+          valeu: "Biovida",
+        },
+        {
+          id: 5,
+          valeu: "Não tenho plano",
+        },
+      ],
     },
   ];
 
-   function avancar(){
-      if(secao < formulario.length -1){
-        setSecao(secao+1);
-      }
-   }
-   function voltar(){
-      if(secao > 0){
-        setSecao(secao - 1);
-      }
-   }
+  function avancar() {
+    if (secao < formulario.length - 1) {
+      setSecao(secao + 1);
+    }
+  }
+  function voltar() {
+    if (secao > 0) {
+      setSecao(secao - 1);
+    }
+  }
 
   return (
     <VStack flex={1} alignItems="center" p={6} justifyContent="center">
       <LogoMedClin />
       <Titulo> {formulario[secao].titulo} </Titulo>
-      <Box>
-        {formulario[secao].textoFormulario.map((form) => {
-          return <Form label={form.label} placeholder={form.placeholder} />;
-        })}
+      <Box  w="100%" >
+        <Text fontSize={20} color={STYLES.colors.blue3[500]} fontWeight='bold' > {formulario[secao].descrição} </Text>
+        <Box>
+          {formulario[secao]?.textoFormulario?.map((form) => {
+            return <Form label={form.label} placeholder={form.placeholder} />;
+          })}
+        </Box>
+        <Box>
+          {formulario[secao].checkbox.map((checked) => {
+            return (
+              <Checkbox key={checked.id} value={checked.valeu}>
+                {checked.valeu}
+              </Checkbox>
+            );
+          })}
+        </Box>
       </Box>
+
       {secao > 0 && <BotaoVoltar onPress={() => voltar()}>Voltar</BotaoVoltar>}
       <Botao onPress={() => avancar()}>Avançar</Botao>
     </VStack>
