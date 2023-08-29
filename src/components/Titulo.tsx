@@ -16,7 +16,7 @@ export function Titulo({children}:TituloProps ) {
       fontWeight="bold"
       color="gray.500"
       textAlign="center"
-      mt={5}
+      mt={1}
       
       >
       {children}

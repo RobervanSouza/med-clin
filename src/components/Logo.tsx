@@ -7,7 +7,7 @@ import { STYLES } from "../styles/styles";
 
 export function LogoMedClin() {
   return (
-    <Box>
+    <Box alignSelf="center" >
 
     <Image
         width={73}
