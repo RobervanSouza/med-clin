@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Cadastro from './Cadastro';
 import Login from './Login';
+import TelasNavegacao from './telas';
 
 const Telas = createNativeStackNavigator();
 
@@ -21,6 +22,13 @@ export default function Rotas () {
           <Telas.Screen
             name="Cadastro"
             component={Cadastro}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Telas.Screen
+            name="Tela"
+            component={TelasNavegacao}
             options={{
               headerShown: false,
             }}

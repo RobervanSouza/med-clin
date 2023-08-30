@@ -25,7 +25,7 @@ export default function Login( {navigation} ) {
           <Form label="Senha" placeholder="Digite sua senha" />
         </FormControl>
       </Box>
-          <Botao>Entar</Botao>
+          <Botao onPress={() => navigation.navigate("Tela")} >Entar</Botao>
       <Link mt={2}>
         <Text
           color={STYLES.colors.blue3[500]}
