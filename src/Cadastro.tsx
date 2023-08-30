@@ -1,6 +1,5 @@
 import {
-  VStack,
-  Image,
+ 
   Text,
   Box,
   FormControl,

@@ -2,8 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Home";
 import Consultas from "./Consultas";
 import Ionicons from "react-native-vector-icons/Ionicons"
-import { STYLES } from './../styles/styles';
-import { color } from 'native-base/lib/typescript/theme/styled-system';
+
 
 
 
