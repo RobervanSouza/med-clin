@@ -14,7 +14,7 @@ import { Form } from "./components/Form";
 import { Botao } from "./components/Button";
 import { LogoMedClin } from "./components/Logo";
 
-export default function Login() {
+export default function Login( {navigation} ) {
   return (
     <VStack flex={1} alignItems="center" p={5} justifyContent="center">
       <LogoMedClin/>
@@ -36,7 +36,7 @@ export default function Login() {
       </Link>
       <Box w="100%" flexDirection="row" justifyContent="center" mt={8}>
         <Text fontSize="16px">Ainda não tem conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={ () => navigation.navigate("Cadastro") } >
           <Text
             fontSize="16px"
             marginLeft="8px"

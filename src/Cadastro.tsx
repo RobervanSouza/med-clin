@@ -15,7 +15,7 @@ import { Form } from "./components/Form";
 import { Botao, BotaoVoltar } from "./components/Button";
 import { LogoMedClin } from "./components/Logo";
 import { useState } from "react";
-import { formulario } from "./components/DadosFormulario";
+import { formulario } from "./utils/DadosFormulario";
 export default function Cadastro() {
   const [secao, setSecao] = useState(0);
 
