@@ -7,32 +7,42 @@ import TelasNavegacao from './telas';
 
 const Telas = createNativeStackNavigator();
 
+const telasScren =
+[
+  {
+    id:1,
+    name: 'Login',
+    component: Login,
+
+  },
+  {
+    id:2,
+    name: 'Cadastro',
+    component: Cadastro,
+
+  },
+  {
+    id:3,
+    name: 'Tela',
+    component: TelasNavegacao,
+
+  },
+]
 
 export default function Rotas () {
     return (
       <NavigationContainer>
         <Telas.Navigator>
-          <Telas.Screen
-            name="Login"
-            component={Login}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Telas.Screen
-            name="Cadastro"
-            component={Cadastro}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Telas.Screen
-            name="Tela"
-            component={TelasNavegacao}
-            options={{
-              headerShown: false,
-            }}
-          />
+          {telasScren.map((tel) => (
+            <Telas.Screen
+            key={tel.id}
+              name={tel.name}
+              component={tel.component}
+              options={{
+                headerShown: false,
+              }}
+            />
+          ))}
         </Telas.Navigator>
       </NavigationContainer>
     );
