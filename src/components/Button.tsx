@@ -31,6 +31,7 @@ export function BotaoVoltar({
   return (
     
       <Button
+        alignItems="center"
         w={autoSize ? "auto" : "100%"}
         bg={STYLES.colors.gray[500]}
         mt={6}
