@@ -7,15 +7,17 @@ interface BotaoProps extends IButtonProps {
   children?: ReactNode;
   autoSize?: boolean;
   color?: string;
+  fontSize?: number;
 }
 
-export function Botao({ children, autoSize = false, color, ...rest }: BotaoProps) {
+export function Botao({ children, autoSize = false, color,  fontSize, ...rest }: BotaoProps) {
   return (
     <Button
       w={autoSize ? "auto" : "100%"}
       bg={STYLES.colors.blue3[500]}
       mt={6}
       borderRadius="lg"
+      fontSize={ fontSize || "4x1"}
     
       {...rest}>
       {children}

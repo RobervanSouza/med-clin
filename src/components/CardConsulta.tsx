@@ -1,0 +1,64 @@
+import { Avatar, Box, ScrollView, VStack, Text } from "native-base";
+import { STYLES } from "../styles/styles";
+import { Botao } from "./Button";
+import { Titulo } from "./Titulo";
+
+interface CardProps {
+  nome: string;
+  avatar: string;
+  especialidade: string;
+  data?: number | string;
+  foiAtendido?: boolean;
+  foiAgendado?: boolean;
+  proximaConsulta?: boolean;
+}
+
+export function CardConsulta({
+  avatar,
+  nome,
+  especialidade,
+  data,
+  foiAgendado,
+  foiAtendido,
+  proximaConsulta,
+}: CardProps) {
+  return (
+    <ScrollView>
+      <VStack>
+        <Box
+          mt={5}
+          mb={5}
+          padding={2}
+          borderRadius={8}
+          bg={foiAtendido ? 'blue.100': 'white'}
+          shadow={8}
+          width={321}
+          justifyContent="flex-start"
+          flexDirection="row">
+          <Avatar
+            source={{
+              uri: avatar,
+            }}
+            mt={13}
+            size="xl"
+          />
+          <Box p={3}>
+            <Titulo marginLeft={-59} fontSize="lg">
+            {nome}
+            </Titulo>
+            <Text color={STYLES.colors.gray[500]} mt={2}>
+             {especialidade}
+            </Text>
+            <Text color={STYLES.colors.gray[500]} mt={2}>
+              
+             {data}
+            </Text>
+            <Botao marginLeft={-105} width={295}>
+              {foiAgendado? 'Cancelar consulta': 'Agendar consulta'}
+            </Botao>
+          </Box>
+        </Box>
+      </VStack>
+    </ScrollView>
+  );
+}

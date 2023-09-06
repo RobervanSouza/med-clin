@@ -8,10 +8,12 @@ interface TituloProps extends ITagProps {
   label: string;
   placeholder: string;
   secureTextEntry?: boolean;
+  width?: number | string;
 }
 
 export function Form({
   children,
+  width,
   label,
   placeholder,
   secureTextEntry = false,
@@ -28,7 +30,7 @@ export function Form({
       </FormControl.Label>
       <Input
         size="lg"
-        width="330px"
+        width={width|| "336px"} 
         borderRadius="lg"
         backgroundColor="gray.200"
         placeholder={placeholder}

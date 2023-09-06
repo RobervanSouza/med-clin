@@ -17,15 +17,15 @@ import { LogoMedClin } from "./components/Logo";
 export default function Login( {navigation} ) {
   return (
     <VStack flex={1} alignItems="center" p={5} justifyContent="center">
-      <LogoMedClin/>
+      <LogoMedClin />
       <Titulo>Faça login em sua conta</Titulo>
-      <Box>
+      <Box width="100%" >
         <FormControl mt={3}>
-          <Form label="Email" placeholder="Digite seu Email" />
-          <Form label="Senha" placeholder="Digite sua senha" />
+          <Form  label="Email" placeholder="Digite seu Email" />
+          <Form  label="Senha" placeholder="Digite sua senha" />
         </FormControl>
       </Box>
-          <Botao onPress={() => navigation.navigate("Tela")} >Entrar</Botao>
+      <Botao onPress={() => navigation.navigate("Tela")}>Entrar</Botao>
       <Link mt={2}>
         <Text
           color={STYLES.colors.blue3[500]}
@@ -36,7 +36,7 @@ export default function Login( {navigation} ) {
       </Link>
       <Box w="100%" flexDirection="row" justifyContent="center" mt={8}>
         <Text fontSize="16px">Ainda não tem conta?</Text>
-        <TouchableOpacity onPress={ () => navigation.navigate("Cadastro") } >
+        <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
           <Text
             fontSize="16px"
             marginLeft="8px"

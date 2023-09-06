@@ -4,77 +4,47 @@ import { Titulo } from "../components/Titulo";
 import { STYLES } from "../styles/styles";
 import { Form } from "../components/Form";
 import { Botao } from "../components/Button";
+import { Depoimentos } from "../utils/DadosFormulario";
+import { useState } from "react";
 
 export default function Home() {
+  const [depoinmentos, setdepoinmentos] = useState(0);
   return (
     <ScrollView flex={1}>
-      <VStack alignItems="center">
+      <VStack flex={1} alignItems="center" justifyContent="flex-start" p={4}>
         <LogoMedClin />
         <Titulo color={STYLES.colors.blue2[500]}> Boas-Vindas! </Titulo>
         <Box
-          mt={5}
-          mb={5}
-          padding={4}
-          borderRadius={8}
-          bg="#f9f9f9"
-          shadow={8}
-          alignItems="center">
-          <Form label="" placeholder="Digite a especialidade" />
-          <Form label="" placeholder="Digite sua localização" />
-          <Botao width="80">Buscar</Botao>
+          w="100%"
+          borderRadius="lg"
+          p={3}
+          shadow="1"
+          borderRightRadius="md"
+          alignItems="center"
+          mt={10}>
+          <Form width="90%" label="" placeholder="Digite a especialidade" />
+          <Form width="90%" label="" placeholder="Digite sua localização" />
+          <Botao width="90%">Buscar</Botao>
         </Box>
+
         <Titulo color={STYLES.colors.blue3[500]}>Depoimentos</Titulo>
-        <Box width={323} mt={5}>
-          <Text color={STYLES.colors.gray[500]}>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-            blanditiis praesentium voluptatum deleniti atque corrupti quos
-            dolores et quas molestias excepturi sint occaecati cupiditate non
-            provident, similique sunt in culpa qui officia deserunt mollitia
-            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-            est et expedita distinctio.
-          </Text>
-          <Titulo> Julio, 40 anos, são paulo/SP</Titulo>
-        </Box>
-        <Divider
-          mt={5}
-          color="black"
-          fontWeight="black"
-          width={411}
-          height={0.5}
-        />
-        <Box width={323} mt={5} >
-          <Text color={STYLES.colors.gray[500]}>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-            impedit quo minus id quod maxime placeat facere possimus, omnis
-            voluptas assumenda est, omnis dolor repellendus.
-          </Text>
-          <Titulo> Julio, 40 anos, são paulo/SP</Titulo>
-        </Box>
-        <Divider
-          mt={5}
-          color="black"
-          fontWeight="black"
-          width={411}
-          height={0.5}
-        />
-        <Box width={323} mt={5}>
-          <Text color={STYLES.colors.gray[500]}>
-            Temporibus autem quibusdam et aut officiis debitis aut rerum
-            necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-            molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
-            delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-            aut perferendis doloribus asperiores.
-          </Text>
-          <Titulo> Julio, 40 anos, são paulo/SP</Titulo>
-        </Box>
-        <Divider
-          mb="8"
-          color="black"
-          fontWeight="black"
-          width={411}
-          mt={5}
-          height={0.5}
-        />
+        <VStack space={3} w="100%" p={5} >
+          <Box width={323} mt={5} mb={3}>
+            {Depoimentos.map((depoimentos) => (
+              <Box mb={5} key={depoimentos.id}>
+                <Text  fontSize={16}>{depoimentos.text}</Text>
+                <Titulo fontSize="18"> {depoimentos.nome} </Titulo>
+                <Divider
+                  mt={5}
+                  color="black"
+                  fontWeight="black"
+                  width={311}
+                  height={0.5}
+                />
+              </Box>
+            ))}
+          </Box>
+        </VStack>
       </VStack>
     </ScrollView>
   );
