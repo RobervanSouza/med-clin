@@ -10,7 +10,7 @@ interface CardProps {
   data?: number | string;
   foiAtendido?: boolean;
   foiAgendado?: boolean;
-  proximaConsulta?: boolean;
+  botaoNome?: string;
 }
 
 export function CardConsulta({
@@ -20,7 +20,7 @@ export function CardConsulta({
   data,
   foiAgendado,
   foiAtendido,
-  proximaConsulta,
+  botaoNome
 }: CardProps) {
   return (
     <ScrollView>
@@ -43,7 +43,7 @@ export function CardConsulta({
             size="xl"
           />
           <Box p={3}>
-            <Titulo marginLeft={-59} fontSize="lg">
+            <Titulo marginLeft={-69} fontSize="lg">
             {nome}
             </Titulo>
             <Text color={STYLES.colors.gray[500]} mt={2}>
@@ -54,7 +54,7 @@ export function CardConsulta({
              {data}
             </Text>
             <Botao marginLeft={-105} width={295}>
-              {foiAgendado? 'Cancelar consulta': 'Agendar consulta'}
+              {foiAgendado? 'Cancelar consulta': 'Agendar consulta' || botaoNome}
             </Botao>
           </Box>
         </Box>
