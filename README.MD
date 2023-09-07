@@ -9,3 +9,6 @@ npm install @react-navigation/bottom-tabs
 npm i @types/react-native-vector-icons
 npm i react-native-web
 npm i react-native-vector-icons
+npm i @react-native-async-storage/async-storage
+npm install axios
+npm i jwt-decode

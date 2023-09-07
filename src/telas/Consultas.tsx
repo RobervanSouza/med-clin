@@ -41,6 +41,7 @@ export default function Consultas() {
         FoiConsultado[Consultado]?.atendido?.map((consulta) => {
           return (
             <CardConsulta
+              key={consulta.id}
               nome={consulta.nome}
               especialidade={consulta.especialidade}
               data={consulta.data}

@@ -14,7 +14,7 @@ export function LogoMedClin() {
         height={84}
         source={Logo}
         alt="logoMedClin"
-        fontSize="2xl"
+        
         mt={4}
         />
       <Text color={STYLES.colors.blue3[500]} fontWeight="bold">

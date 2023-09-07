@@ -9,10 +9,14 @@ interface TituloProps extends ITagProps {
   placeholder: string;
   secureTextEntry?: boolean;
   width?: number | string;
+  value?: string;
+  onChangeText?: (text: string) => void;
 }
 
 export function Form({
   children,
+  value,
+  onChangeText,
   width,
   label,
   placeholder,
@@ -35,6 +39,8 @@ export function Form({
         backgroundColor="gray.200"
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        value={value}
+        onChangeText={onChangeText}
         shadow={3}></Input>
       {children}
     </Box>
