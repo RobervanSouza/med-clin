@@ -1,8 +1,8 @@
 import {
   Text,
   Box,
-  Checkbox,
   ScrollView,
+  Checkbox,
 } from "native-base";
 import { STYLES } from "./styles/styles";
 
@@ -16,6 +16,8 @@ import { formulario } from "./utils/DadosFormulario";
 export default function Cadastro() {
   const [secao, setSecao] = useState(0);
   const [dados, setDados] = useState({} as any);
+  const [planos, setPlanos] = useState([] as number []);//3 vetor de numeros
+
 
   function avancar() {
     if (secao < formulario.length - 1) {
@@ -23,6 +25,7 @@ export default function Cadastro() {
     }
     else{
       console.log(dados)
+      console.log(planos)
     }
   }
   function voltar() {
@@ -61,7 +64,18 @@ export default function Cadastro() {
         <Box>
           {formulario[secao].checkbox.map((checked) => {
             return (
-              <Checkbox key={checked.id} value={checked.value}>
+              <Checkbox
+              key={checked.id} 
+              value={checked.value}
+              onChange={() => setPlanos((planosAnteriores) => {
+                if(planosAnteriores.includes(checked.id)){
+                  return planosAnteriores.filter((id) => 
+                    id !== checked.id)
+                  
+                }
+                return [...planosAnteriores, checked.id]
+              })}
+              >
                 {checked.value}
               </Checkbox>
             );
