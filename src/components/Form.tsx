@@ -10,39 +10,36 @@ interface TituloProps extends ITagProps {
   secureTextEntry?: boolean;
   width?: number | string;
   value?: string;
+  name?: string;
+  
   onChangeText?: (text: string) => void;
 }
 
 export function Form({
   children,
   value,
+  name,
   onChangeText,
   width,
   label,
   placeholder,
   secureTextEntry = false,
-}: TituloProps) {
+}: TituloProps): JSX.Element {
   return (
-    <Box>
-      <FormControl.Label>
-        <Text
-          color={STYLES.colors.blue3[500]}
-          fontWeight="bold"
-          fontSize="16px">
-          {label}
-        </Text>
-      </FormControl.Label>
+     <FormControl mt={3}>
+      {label && <FormControl.Label>{label}</FormControl.Label>}
       <Input
-        size="lg"
-        width={width|| "336px"} 
-        borderRadius="lg"
-        backgroundColor="gray.200"
         placeholder={placeholder}
+        size="lg"
+        w="100%"
+        borderRadius="lg"
+        bgColor="gray.100"
         secureTextEntry={secureTextEntry}
+        shadow={3}
         value={value}
         onChangeText={onChangeText}
-        shadow={3}></Input>
-      {children}
-    </Box>
+  color={STYLES.colors.blue3[500]}
+      />
+    </FormControl>
   );
 }

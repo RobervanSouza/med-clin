@@ -5,6 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 import Explorar from "./Explorar";
 import Perfil from "./Perfil";
 
+
 const screenOptions = {
   tabBarStyle: {
     backgroundColor: "#0B3B60",
@@ -37,7 +38,8 @@ const navegacao = [
     name: "Perfil",
     components: Perfil,
     icone: "person",
-  }
+  },
+
 ]
 
 const Tela = createBottomTabNavigator()

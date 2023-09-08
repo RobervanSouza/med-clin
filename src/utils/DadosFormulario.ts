@@ -1,27 +1,45 @@
 const formulario = [
   {
     id: 1,
-    titulo: "Insira alguns dados básicos:",
-    textoFormulario: [
+    titulo: "Insira alguns dados básicos",
+    entradaTexto: [
       {
         id: 1,
         label: "Nome",
         placeholder: "Digite seu nome completo",
+        name: "nome",
       },
       {
         id: 2,
         label: "Email",
         placeholder: "Digite seu email",
+        name: "email",
       },
       {
         id: 3,
-        label: "Criar uma senha",
-        placeholder: "Digite sua senha",
+        label: "Crie uma senha",
+        placeholder: "Insira sua senha",
+        secureTextEntry: true,
+        name: "senha",
       },
       {
         id: 4,
-        label: "Repetir nova senha",
-        placeholder: "Digite sua senha",
+        label: "Confirme sua senha",
+        placeholder: "Insira sua senha",
+        secureTextEntry: true,
+        name: "confirmaSenha",
+      },
+      {
+        id: 5,
+        label: "CPF",
+        placeholder: "Insira seu CPF",
+        name: "cpf",
+      },
+      {
+        id: 6,
+        label: "Foto de perfil",
+        placeholder: "Link da foto",
+        name: "imagem",
       },
     ],
     checkbox: [],
@@ -29,60 +47,79 @@ const formulario = [
   {
     id: 2,
     titulo: "Agora, mais alguns dados sobre você:",
-    textoFormulario: [
+    entradaTexto: [
       {
         id: 1,
         label: "CEP",
-        placeholder: "Digite seu CEP",
+        placeholder: "Insira seu CEP",
+        name: "cep",
       },
       {
         id: 2,
-        label: "Endereço",
-        placeholder: "Digite seu endereço",
+        label: "Rua",
+        placeholder: "Nome da rua",
+        name: "rua",
       },
       {
         id: 3,
         label: "Número",
-        placeholder: "Digite número de sua casa",
+        placeholder: "Insira seu número",
+        name: "numero",
+      },
+      {
+        id: 4,
+        label: "Complemento",
+        placeholder: "Insira seu complemento",
+        name: "complemento",
       },
       {
         id: 5,
-        label: "Complemento",
-        placeholder: "Insira seu complemento",
+        label: "Telefone",
+        placeholder: "(00) 00000-0000",
+        name: "telefone",
       },
       {
         id: 6,
-        label: "Telefone",
-        placeholder: "(00) 00000-0000",
+        label: "Estado",
+        placeholder: "Seu Estado",
+        name: "estado",
       },
     ],
     checkbox: [],
   },
   {
     id: 3,
-    titulo: "Para finalizar, qual seu plano de saúde?",
+    titulo: "Para finalizar, quais são os seus planos?",
+    entradaTexto: [],
     descrição: "Selecione os planos:",
-    textoFormulario: [],
     checkbox: [
       {
         id: 1,
-        valeu: "Porto Seguro",
+        value: "Sulamerica",
       },
       {
         id: 2,
-        valeu: "Bradesco",
+        value: "Unimed",
       },
       {
         id: 3,
-        valeu: "Amil",
+        value: "Bradesco",
       },
       {
         id: 4,
-        valeu: "Biovida",
+        value: "Amil",
       },
       {
         id: 5,
-        valeu: "Não tenho plano",
+        value: "Biosaúde",
+      },
+      {
+        id: 6,
+        value: "Biovida",
+      },
+      {
+        id: 7,
+        value: "Outros",
       },
     ],
   },

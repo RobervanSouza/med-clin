@@ -12,3 +12,8 @@ npm i react-native-vector-icons
 npm i @react-native-async-storage/async-storage
 npm install axios
 npm i jwt-decode
+
+// Usar Camera
+npx expo install expo-camera
+npx expo install expo-face-detector
+npx expo install react-native-reanimated

@@ -66,6 +66,7 @@ export default function Login( {navigation} : any  ) {
       <Box width="100%" >
         <FormControl mt={3}>
           <Form  label="Email" placeholder="Digite seu Email" value={email} onChangeText={setEmail}
+          secureTextEntry
            />
           <Form  label="Senha" placeholder="Digite sua senha" value={senha} onChangeText={setSenha} secureTextEntry />
         </FormControl>

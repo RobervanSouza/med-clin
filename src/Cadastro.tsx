@@ -1,27 +1,28 @@
 import {
- 
   Text,
   Box,
-  FormControl,
-  Link,
   Checkbox,
   ScrollView,
 } from "native-base";
 import { STYLES } from "./styles/styles";
-import { TouchableOpacity } from "react-native";
+
 import { Titulo } from "./components/Titulo";
 import { Form } from "./components/Form";
 import { Botao, BotaoVoltar } from "./components/Button";
 import { LogoMedClin } from "./components/Logo";
 import { useState } from "react";
 import { formulario } from "./utils/DadosFormulario";
+
 export default function Cadastro() {
   const [secao, setSecao] = useState(0);
-
+  const [dados, setDados] = useState({} as any);
 
   function avancar() {
     if (secao < formulario.length - 1) {
       setSecao(secao + 1);
+    }
+    else{
+      console.log(dados)
     }
   }
   function voltar() {
@@ -29,10 +30,11 @@ export default function Cadastro() {
       setSecao(secao - 1);
     }
   }
-
-
   const cadastrar = secao === formulario.length -1;
 
+  function atualizarDados(id: string, valor: string) {
+    setDados( { ...dados, [id]: valor})
+  }
   return (
     <ScrollView flex={1} padding={3}>
       <LogoMedClin />
@@ -43,15 +45,24 @@ export default function Cadastro() {
           {formulario[secao].descrição}{" "}
         </Text>
         <Box>
-          {formulario[secao]?.textoFormulario?.map((form) => {
-            return <Form label={form.label} placeholder={form.placeholder} />;
+          {formulario[secao]?.entradaTexto?.map((formu) => {
+            return (
+              <Form
+                label={formu.label}
+                placeholder={formu.placeholder}
+                key={formu.id}
+                value={dados[formu.name]}
+                secureTextEntry={formu.secureTextEntry}
+                onChangeText={(text) => atualizarDados(formu.label, text)}
+              />
+            );
           })}
         </Box>
         <Box>
           {formulario[secao].checkbox.map((checked) => {
             return (
-              <Checkbox key={checked.id} value={checked.valeu}>
-                {checked.valeu}
+              <Checkbox key={checked.id} value={checked.value}>
+                {checked.value}
               </Checkbox>
             );
           })}
@@ -59,7 +70,7 @@ export default function Cadastro() {
       </Box>
 
       {secao > 0 && <BotaoVoltar onPress={() => voltar()}>Voltar</BotaoVoltar>}
-      <Botao mb={12} onPress={() => (cadastrar ? cadastrar() : avancar())}>
+      <Botao onPress={() => avancar()} mt={4} mb={20}>
         {cadastrar ? "Cadastrar" : "Avançar"}
       </Botao>
     </ScrollView>
