@@ -53,7 +53,7 @@ export default function Cadastro() {
                 key={formu.id}
                 value={dados[formu.name]}
                 secureTextEntry={formu.secureTextEntry}
-                onChangeText={(text) => atualizarDados(formu.label, text)}
+                onChangeText={(text) => atualizarDados(formu.name, text)}
               />
             );
           })}
