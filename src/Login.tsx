@@ -29,25 +29,30 @@ export default function Login( {navigation} : any  ) {
   const toast = useToast()
 
   useEffect(() => {
-    AsyncStorage.removeItem('token')
-    async function verificarLogin() {
+    //AsyncStorage.removeItem('token')
+    async function dadosPaciente() {
       const token = await AsyncStorage.getItem('token')
       if (token) {
       navigation.replace("Tela");
+      console.log(token)
 
       } 
       setCarregando(false)
    }
-   verificarLogin();
+   dadosPaciente();
     
   }, []);
+    interface TokenProps {
+      token: string;
+      id: string;
+    }
 
    async function Login() {
     const reponse = await fazerLogin(email, senha)
     if (reponse){
       const {token} = reponse
       AsyncStorage.setItem('token', token)
-      const tokenDecotificado = jwtDecode(token) as any
+      const tokenDecotificado = jwtDecode(token) as TokenProps
       const pacienteId = tokenDecotificado.id
       AsyncStorage.setItem('pacienteId', pacienteId)
       navigation.replace('Tela')
@@ -66,7 +71,7 @@ export default function Login( {navigation} : any  ) {
       <Box width="100%" >
         <FormControl mt={3}>
           <Form  label="Email" placeholder="Digite seu Email" value={email} onChangeText={setEmail}
-          secureTextEntry
+        
            />
           <Form  label="Senha" placeholder="Digite sua senha" value={senha} onChangeText={setSenha} secureTextEntry />
         </FormControl>
