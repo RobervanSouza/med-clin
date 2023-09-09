@@ -117,10 +117,7 @@ const formulario = [
         id: 6,
         value: "Biovida",
       },
-      {
-        id: 7,
-        value: "Outros",
-      },
+     
     ],
   },
 ];
