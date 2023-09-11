@@ -5,7 +5,7 @@ import { STYLES } from "../styles/styles";
 
 interface TituloProps extends ITagProps {
   children?: ReactNode;
-  label: string;
+  label?: string;
   placeholder: string;
   secureTextEntry?: boolean;
   width?: number | string;

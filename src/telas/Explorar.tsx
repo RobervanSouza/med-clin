@@ -6,11 +6,31 @@ import { STYLES } from "../styles/styles";
 import { FoiConsultado } from "../utils/DadosFormulario";
 import { useState } from "react";
 import { CardConsulta } from "../components/CardConsulta";
+import { BuscaEspecialistaEstado } from "../servicos/EspecialistaServico";
 
 
 
 export default function Explorar() {
   const [Consultado, setConsultado] = useState(0);
+  const [estado, setEstado] = useState('');
+  const [especialidade, setEspecialidade] = useState('');
+  const [busca, setBusca] = useState([]);
+
+  interface Especialista {
+    nome: string;
+    imagem: string;
+    especialidade: string;
+  }
+
+ async function buscaDados() {
+  if(!especialidade || !busca ) return null;
+    const response = await BuscaEspecialistaEstado(estado, especialidade)
+    if (response) {
+      setBusca(response)
+      console.log(response)
+    
+  }
+ }
 
   return (
     <ScrollView>
@@ -24,23 +44,35 @@ export default function Explorar() {
           shadow={8}
           alignItems="center"
           width={321}>
-          <Form width="100%" label="" placeholder="Digite a especialidade" />
-          <Form width="100%" label="" placeholder="Digite sua localização" />
-          <Botao width="100%">Buscar</Botao>
+          <Form 
+          width="100%" 
+          placeholder="Digite a especialidade" 
+          value={especialidade}
+          onChangeText={setEspecialidade}
+          />
+          <Form 
+          width="100%" 
+          placeholder="Digite sua localização"
+          value={estado}
+          onChangeText={setEstado}
+          />
+          <Botao width="100%" onPress={buscaDados} >Buscar</Botao>
         </Box>
         <Titulo color={STYLES.colors.blue2[500]}>Resultados da busca</Titulo>
-        {FoiConsultado[Consultado]?.atendido?.map((consulta) => {
-          return (
+        {busca?.map((especialista: Especialista, index) => 
+           (
+            <VStack>
             <CardConsulta
-              nome={consulta.nome}
-              especialidade={consulta.especialidade}
-           
-              avatar={consulta.avatar}
-              botaoNome="Agendar Consulta"
-              
+            key={index}
+            nome={especialista.nome}
+            especialidade={especialista.especialidade}
+            
+            avatar={especialista.imagem}
+            botaoNome="Agendar Consulta"
+            
             />
-          );
-        })}
+            </VStack>
+          ))}
       </VStack>
     </ScrollView>
   );
