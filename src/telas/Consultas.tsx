@@ -2,14 +2,49 @@ import { VStack, Text, ScrollView, Box, Avatar, Divider } from "native-base";
 import { Titulo } from "../components/Titulo";
 import { STYLES } from "../styles/styles";
 import { Botao } from "../components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardConsulta } from "../components/CardConsulta";
 import { ConsultasPassadas, FoiConsultado } from "../utils/DadosFormulario";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { pegarDadosConsultas } from "../servicos/PacienteServico";
 
+interface Especialista{
+  id: string;
+  nome: string;
+  imagem: string;
+  especialidade: string;
+}
+interface Consulta {
+  id: string;
+  data: string;
+  especialista: Especialista;
+}
 
 export default function Consultas() {
-  const [Consultas, setConsultas] = useState(0);
-  const [Consultado, setConsultado] = useState(0);
+
+  const [consultasPassadas, setConsultasPassadas] = useState<Consulta[]>([]);
+  const [proximasConsultas, setProximasConsultas] = useState<Consulta[]>([]);
+
+   useEffect(() => {
+      async function pegarConsultas() {
+        const pacienteId = await AsyncStorage.getItem('pacienteId')
+        if (!pacienteId) return null;
+
+        const todasConsultas: Consulta[] = await pegarDadosConsultas(pacienteId)
+
+        const momentoCriada = new Date();
+
+        const proximas = todasConsultas.filter((consulta) => new Date(consulta.data) > momentoCriada)
+
+        const passadas = todasConsultas.filter((consulta) => new Date(consulta.data) <= momentoCriada)
+
+        setConsultasPassadas(passadas)
+        setProximasConsultas(proximas)
+      }
+      pegarConsultas();
+   }, []);
+
+
   return (
     <ScrollView flex={1} padding={3}>
       <VStack flex={1} alignItems="center" mb={63}>
@@ -19,13 +54,16 @@ export default function Consultas() {
           Proxímas consultas
         </Titulo>
 
-        <CardConsulta
-          nome={ConsultasPassadas[Consultas].nome}
-          especialidade={ConsultasPassadas[Consultas].especialidade}
-          data={ConsultasPassadas[Consultas].data}
-          avatar={ConsultasPassadas[Consultas].avatar}
-          foiAgendado
-        />
+        {proximasConsultas?.map((consulta) => (
+          <CardConsulta
+            key={consulta.id}
+            nome={consulta?.especialista?.nome}
+            especialidade={consulta?.especialista?.especialidade}
+            data={consulta?.data}
+            avatar={consulta?.especialista?.imagem}
+            foiAgendado
+          />
+        ))}
 
         <Divider
           mt={5}
@@ -37,20 +75,16 @@ export default function Consultas() {
         <Titulo marginLeft="-35%" mt={5} color={STYLES.colors.blue2[500]}>
           Consultas passadas
         </Titulo>
-       {
-        FoiConsultado[Consultado]?.atendido?.map((consulta) => {
-          return (
-            <CardConsulta
-              key={consulta.id}
-              nome={consulta.nome}
-              especialidade={consulta.especialidade}
-              data={consulta.data}
-              avatar={consulta.avatar}
-              foiAtendido
-            />
-          );
-        })
-       }
+        {consultasPassadas?.map((consulta) => (
+          <CardConsulta
+            key={consulta.id}
+            nome={consulta?.especialista?.nome}
+            especialidade={consulta?.especialista?.especialidade}
+            data={consulta?.data}
+            avatar={consulta?.especialista?.imagem}
+            foiAtendido
+          />
+        ))}
       </VStack>
     </ScrollView>
   );

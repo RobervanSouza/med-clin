@@ -45,37 +45,38 @@ export default function Explorar({ navigation} :NavigationProps<'Explorar'>)  {
           shadow={8}
           alignItems="center"
           width={321}>
-          <Form 
-          width="100%" 
-          placeholder="Digite a especialidade" 
-          value={especialidade}
-          onChangeText={setEspecialidade}
+          <Form
+            width="100%"
+            placeholder="Digite a especialidade"
+            value={especialidade}
+            onChangeText={setEspecialidade}
           />
-          <Form 
-          width="100%" 
-          placeholder="Digite sua localização"
-          value={estado}
-          onChangeText={setEstado}
+          <Form
+            width="100%"
+            placeholder="Digite sua localização"
+            value={estado}
+            onChangeText={setEstado}
           />
-          <Botao width="100%" onPress={buscaDados} >Buscar</Botao>
+          <Botao width="100%" onPress={buscaDados}>
+            Buscar
+          </Botao>
         </Box>
         <Titulo color={STYLES.colors.blue2[500]}>Resultados da busca</Titulo>
-        {busca?.map((especialista: Especialista, index) => 
-           (
-            <VStack>
+        {busca?.map((especialista: Especialista, index) => (
+          <VStack key={index}>
             <CardConsulta
-            key={index}
-            nome={especialista.nome}
-            especialidade={especialista.especialidade}
-            
-            avatar={especialista.imagem}
-            botaoNome="Agendar Consulta"
-            onPress={() => navigation.navigate('Agendamento', {
-              especialistaId: especialista.id
-            })}
+              nome={especialista.nome}
+              especialidade={especialista.especialidade}
+              avatar={especialista.imagem}
+              botaoNome="Agendar Consulta"
+              onPress={() =>
+                navigation.navigate("Agendamento", {
+                  especialistaId: especialista.id,
+                })
+              }
             />
-            </VStack>
-          ))}
+          </VStack>
+        ))}
       </VStack>
     </ScrollView>
   );
