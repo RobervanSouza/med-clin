@@ -3,14 +3,14 @@ import { Botao } from "../components/Button";
 import { Form } from "../components/Form";
 import { Titulo } from "../components/Titulo";
 import { STYLES } from "../styles/styles";
-import { FoiConsultado } from "../utils/DadosFormulario";
 import { useState } from "react";
 import { CardConsulta } from "../components/CardConsulta";
 import { BuscaEspecialistaEstado } from "../servicos/EspecialistaServico";
+import { NavigationProps } from "../@types/navigation";
 
 
 
-export default function Explorar() {
+export default function Explorar({ navigation} :NavigationProps<'Explorar'>)  {
   const [Consultado, setConsultado] = useState(0);
   const [estado, setEstado] = useState('');
   const [especialidade, setEspecialidade] = useState('');
@@ -20,6 +20,7 @@ export default function Explorar() {
     nome: string;
     imagem: string;
     especialidade: string;
+    id: string;
   }
 
  async function buscaDados() {
@@ -69,7 +70,9 @@ export default function Explorar() {
             
             avatar={especialista.imagem}
             botaoNome="Agendar Consulta"
-            
+            onPress={() => navigation.navigate('Agendamento', {
+              especialistaId: especialista.id
+            })}
             />
             </VStack>
           ))}

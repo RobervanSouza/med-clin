@@ -11,10 +11,12 @@ interface CardProps {
   foiAtendido?: boolean;
   foiAgendado?: boolean;
   botaoNome?: string;
+  onPress?: ( ) => void;
 }
 
 export function CardConsulta({
   avatar,
+  onPress,
   nome,
   especialidade,
   data,
@@ -53,7 +55,7 @@ export function CardConsulta({
               
              {data}
             </Text>
-            <Botao marginLeft={-105} width={295}>
+            <Botao marginLeft={-105} width={295} onPress={onPress} >
               {foiAgendado? 'Cancelar consulta': 'Agendar consulta' || botaoNome}
             </Botao>
           </Box>

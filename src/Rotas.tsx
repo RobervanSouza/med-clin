@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Cadastro from './Cadastro';
 import Login from './Login';
 import TelasNavegacao from './telas';
+import Agendamento from './Agendamento';
 
 const Telas = createNativeStackNavigator();
 
@@ -25,6 +26,13 @@ const telasScren =
     id:3,
     name: 'Tela',
     component: TelasNavegacao,
+
+  },
+
+  {
+    id:3,
+    name: 'Agendamento',
+    component:Agendamento,
 
   },
 ]
